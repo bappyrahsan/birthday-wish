@@ -3,7 +3,6 @@
 Birthday wish generating app
 @author:Ohidur Rahman Bappy
 @date:29-Nov-2016
-@phone:+8801749-817193
 @web:http://www.bappy.cf/
 @email:bappyrahsan[at]gmail.com
 */
@@ -13,6 +12,10 @@ $name=$_GET['name'];
 $r=($_GET['r']);
 $from=$_GET['from'];
 $t=$_GET['t'];
+
+
+//putenv('GDFONTPATH=' . realpath('.'));
+
 
 //the background template path
 $imagepath="hbd$t.png";
@@ -27,7 +30,7 @@ $angle =0;
 $x=(10-strlen($name)/2)*1020/20;
 
 $y=240;
-$font="../res/fonts/beautifuleverytime_bold.ttf";
+$font=__DIR__ . "/beautifuleverytime_bold.ttf";
 $color = imagecolorallocate($hbd_template, 250, 0, 0);
 //printing the recipients name
 ImageTTFText($hbd_template, $font_si, 0, $x, $y, $color, $font, $name);
@@ -39,7 +42,7 @@ $font_si=40;
 $angle =0; 
 $x=512;
 $y=300;
-$font="../res/fonts/roboto.ttf";
+$font=__DIR__ . "/roboto.ttf";
 $color = imagecolorallocate($hbd_template, 250, 0, 0);
 ImageTTFText($hbd_template, $font_si, $angle, $x, $y, $color, $font, $r);
 
@@ -49,8 +52,8 @@ ImageTTFText($hbd_template, $font_si, $angle, $x, $y, $color, $font, $r);
 $font_si=40;
 $angle =0; 
 $x=700;
-$y=500;
-$font="../res/fonts/telenor.ttf";
+$y=520;
+$font=__DIR__ . "/telenor.ttf";
 $color = imagecolorallocate($hbd_template, 0,0,0);
 ImageTTFText($hbd_template, $font_si, $angle, $x, $y, $color, $font, '@ '.$from);
 
@@ -59,7 +62,7 @@ ImageTTFText($hbd_template, $font_si, $angle, $x, $y, $color, $font, '@ '.$from)
 
 //displaying the image
 
-Header('Content-type: image/png');
+header('Content-type: image/png');
 imagepng($hbd_template);
 imagedestroy($hbd_template);
 
